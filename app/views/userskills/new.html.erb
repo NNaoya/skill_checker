@@ -1,0 +1,25 @@
+<div class="skill_detail_main_image"></div>
+
+<div class="content">
+  <%= form_for @userskill,url: userskills_create_url do |f| %>
+    <% @result.each_with_index do |category, i| %>
+      <h2><%= category.skill %></h2>
+        <div>
+          <input class="not_space" type="radio" name="skill<%= i %>" value="0" checked="checked">未経験
+          <input type="radio" name="skill<%= i %>" value="1">初級
+          <input type="radio" name="skill<%= i %>" value="2">中級
+          <input type="radio" name="skill<%= i %>" value="3">上級
+        </div>
+
+        <div>
+          <input class="comment" type="textarea" name="comment<%= i %>">
+        </div>
+        <input type="hidden" name="skillid<%= i %>" value="<%= category.id %>" />
+        <input type="hidden" name="userskill_insert_update_flag" value="<%= @userskill_insert_update_flag %>" />
+    <% end %>
+    <div class="submit">
+      <%= f.submit "登録", class: 'btn_skill_detail' %>
+    </div>
+  <% end %>
+  <%= link_to image_tag('button_back.png', { :border => '0', :alt => '戻る'}), '/skill_registration_update/index',class: "btn_back" %>
+</div>

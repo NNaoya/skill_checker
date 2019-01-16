@@ -1,0 +1,42 @@
+<div class="skill_detail_main_image"></div>
+
+<div class="content">
+  <%= form_for @userskill,url: userskills_create_url do |f| %>
+    <% @result.each_with_index do |userskill, i| %>
+      <h2><%= userskill.skill %></h2>
+        <div>
+          <% if userskill.level == '0' %>
+            <input class="not_space" type="radio" name="skill<%= i %>" value="0" checked="checked">未経験
+          <% else %>
+            <input class="not_space" type="radio" name="skill<%= i %>" value="0">未経験
+          <% end %>
+          <% if userskill.level == '1' %>
+            <input type="radio" name="skill<%= i %>" value="1" checked="checked">初級
+          <% else %>
+            <input type="radio" name="skill<%= i %>" value="1">初級
+          <% end %>
+          <% if userskill.level == '2' %>
+            <input type="radio" name="skill<%= i %>" value="2" checked="checked">中級
+          <% else %>
+            <input type="radio" name="skill<%= i %>" value="2">中級
+          <% end %>
+          <% if userskill.level == '3' %>
+            <input type="radio" name="skill<%= i %>" value="3" checked="checked">上級
+          <% else %>
+            <input type="radio" name="skill<%= i %>" value="3">上級
+          <% end %>
+        </div>
+
+        <div>
+          <input class="comment" type="textarea" name="comment<%= i %>" value="<%= userskill.comment %>">
+        </div>
+        <input type="hidden" name="userskillid<%= i %>" value="<%= userskill.id %>" />
+        <input type="hidden" name="skillid<%= i %>" value="<%= userskill.skill_id %>" />
+    <% end %>
+    <input type="hidden" name="userskill_insert_update_flag" value="<%= @userskill_insert_update_flag %>" />
+    <div class="submit">
+      <%= f.submit "登録", class: 'btn_skill_detail' %>
+    </div>
+  <% end %>
+  <%= link_to image_tag('button_back.png', { :border => '0', :alt => '戻る'}), '/skill_registration_update/index',class: "btn_back" %>
+</div>

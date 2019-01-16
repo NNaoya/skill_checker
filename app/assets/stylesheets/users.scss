@@ -1,0 +1,30 @@
+/** コンテンツ部分　**/
+
+// フォーム部
+.users-new-wrapper {
+  width: 100vw;
+  height: 100vh;
+  background-image: image-url('bg-top.png');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-color: #464646;
+
+  .users-new-container {
+    padding-top: 100px;
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+  }
+}
+
+.btn_register {
+  width: 148px;
+  margin: 0 auto;
+}
+
+.link_login {
+  margin-left: 110px;
+}

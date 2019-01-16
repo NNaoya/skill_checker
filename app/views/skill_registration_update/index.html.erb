@@ -1,0 +1,122 @@
+<div class="skill_registration_update_main_image"></div>
+<h1 id="page_title">Skill Registration Or Update</h1>
+
+<div class="content">
+  <div id="tabs">
+    <ul id="tab">
+      <li id="tab_button" class="tab_button registration_update_tab"><a href="#tabs-1" title="">スキル</a></li>
+      <li id="tab_button1" class="tab_button registration_update_tab"><a href="#tabs-2" title="">経歴</a></li>
+    </ul>
+    <div id="tabs_container">
+      <!-- スキルタブ -->
+      <div id="tabs-1" class="registration_update_tabs-1">
+        <!-- 登録されているカテゴリー分ループ -->
+        <% (0..@categoryNum-1).each do |n| %>
+          <!-- 処理対象が偶数の場合 -->
+          <% if n.even? %>
+            <article>
+          <% end %>
+          <section class="category">
+            <!-- カテゴリーに紐づくスキル項目分ループ -->
+            <% @category[n].each_with_index do |category, i| %>
+              <!-- 最初の項目を処理する場合 -->
+              <% if i == 0 %>
+                <!-- タイトル画像、タイトル名表示 -->
+                <%= image_tag category.title_image.url %>
+                <h2 class="category_title"><%= category.name %></h2>
+                <ul>
+              <% end %>
+              <!-- スキル項目表示 -->
+              <li><%= category.skill %></li>
+              <!-- 最後の項目を処理する場合 -->
+              <% if i == @category[n].length - 1 %>
+                </ul>
+                <!-- アイコン表示 -->
+                <%= image_tag category.icon_image.url,:class => "category_icon" %>
+                <!-- 詳細ページへリンク表示 -->
+                <button class="btn_transition" onclick="screentransition(<%= category.id %>);">詳細ページへ</button>
+              <% end %>
+            <% end %>
+          </section>
+          <!-- 処理対象が奇数、もしくは最後の場合 -->
+          <% if n.odd? || n == @categoryNum-1 %>
+            </article>
+          <% end %>
+        <% end %>
+      </div>
+
+      <!-- 経歴タブ -->
+      <div id="tabs-2">
+        <%= form_for @user, url: '/skill_registration_update' do |f| %>
+          <%= fields_for @project do |r| %>
+            <h2>職務経歴</h2>
+            <table>
+              <tr>
+                <td class="table_label">期間</td>
+                <td class="text"><%= r.text_field :project_period, class: 'form-control' %></td>
+              </tr>
+              <tr>
+                <td class="table_label">プロジェクト名</td>
+                <td class="text"><%= r.text_field :project_name, class: 'form-control' %></td>
+              </tr>
+              <tr>
+                <td class="table_label">プロジェクト概要</td>
+                <td class="text"><%= r.text_field :project_overview, class: 'form-control' %></td>
+              </tr>
+              <tr>
+                <td class="table_label">担当フェーズ</td>
+                <td class="text"><%= r.text_field :phase, class: 'form-control' %></td>
+              </tr>
+              <tr>
+                <td class="table_label">業務内容</td>
+                <td class="text"><%= r.text_field :business, class: 'form-control' %></td>
+              </tr>
+              <tr>
+                <td class="table_label">技術要素（OS・言語・DB等)</td>
+                <td class="text"><%= r.text_field :technical_element, class: 'form-control' %></td>
+              </tr>
+            </table>
+            <%= hidden_field_tag 'project[user_id]', @user.id %>
+            <%= hidden_field_tag 'project_insert_update_flag', @project_insert_update_flag %>
+            <%= hidden_field_tag 'project_id', @project.id %>
+          <% end %>
+          <%= fields_for @qualification do |q| %>
+            <h2>資格</h2>
+            <table id="tbl_qualification">
+              <% @qualification.each_with_index do |qualification, i| %>
+              <tr>
+                <td class="table_label">資格<%= i+1 %></td>
+                <td class="text"><input class="form-control" type="text" name="qualification<%= i+1 %>" value="<%= qualification.qualification %>"></td>
+              </tr>
+              <input type="hidden" name="qualification_id<%= i+1 %>" value="<%= qualification.id %>" />
+              <input type="hidden" name="qualification_insert_update_flag<%= i %>" value="<%= @qualification_insert_update_flag %>" />
+              <% end %>
+            </table>
+            <%= hidden_field_tag 'qualification_count', @qualification.length %>
+            <button class="btn_add add_qualification" type="button" name="add_qualification" value="追加">追加</button>
+          <% end %>
+          <%= fields_for @selfintroduction do |s| %>
+            <h2>その他</h2>
+            <table>
+              <tr>
+                <td class="table_label">自己PR</td>
+                <td class="text"><%= s.text_field :self_introduction, class: 'form-control' %></td>
+              </tr>
+            </table>
+            <%= hidden_field_tag 'selfintroduction[user_id]', @user.id %>
+            <%= hidden_field_tag 'selfintroduction_insert_update_flag', @selfintroduction_insert_update_flag %>
+            <%= hidden_field_tag 'selfintroduction_id', @selfintroduction.id %>
+          <% end %>
+          <article>
+            <%= f.submit "登録", class: 'btn_skill_registration' %>
+          </article>
+        <% end %>
+      </div>
+    </div><!--End tabs container-->
+  </div><!--End tabs-->
+
+<%= link_to image_tag('button_back.png', { :border => '0', :alt => '戻る'}), '/welcomes/index',class: "btn_back" %>
+</div>
+
+<%= javascript_include_tag "tabulous.js" %>
+<%= javascript_include_tag "skill_registration_update.js" %>

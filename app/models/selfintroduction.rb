@@ -1,0 +1,2 @@
+class Selfintroduction < ApplicationRecord
+end

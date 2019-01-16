@@ -1,0 +1,41 @@
+/** ヘッダー部 **/
+
+// メイン画像部
+.skill_detail_main_image {
+  width: 100vw;
+  height: 200px;
+  background-image: image-url('skill_frontside_mainimage.png');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-bottom: 40px;
+}
+
+/** コンテンツ部分　**/
+
+// フォーム部
+.comment {
+  width: 100%;
+  height : 72px;
+  margin-bottom: 40px;
+}
+
+.btn_skill_detail {
+  color :#FFFFFF;
+  background: linear-gradient(#8DEBFA, #07A8C1);
+  border-radius: 15px;
+  border: none;
+  width: 120px;
+  height: 32px;
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+input[type="radio"] {
+  margin-right: 8px;
+}
+
+input[type="radio"]:not(.not_space) {
+  margin-left: 16px;
+  margin-bottom: 24px;
+}

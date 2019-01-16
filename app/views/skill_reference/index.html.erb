@@ -1,0 +1,139 @@
+<div class="skill_reference_main_image"></div>
+<h1 id="page_title">Skill Reference</h1>
+
+<div class="content">
+  <div id="tabs">
+    <ul id="tab">
+      <li id="tab_button" class="tab_button reference_tab"><a href="#tabs-1" title="">分野ごとの分析結果</a></li>
+      <li id="tab_button1" class="tab_button reference_tab"><a href="#tabs-2" title="">全分野の分析結果</a></li>
+      <li id="tab_button2" class="tab_button reference_tab"><a href="#tabs-3" title="">時期ごとの分析結果</a></li>
+      <li id="tab_button3" class="tab_button reference_tab"><a href="#tabs-4" title="">経歴</a></li>
+    </ul>
+    <div id="tabs_container">
+      <div id="tabs-1" class="reference_tabs-1">
+        <article class="box">
+          <article class="left">
+            <%= high_chart("radar1", @graph1) %>
+          </article>
+          <article class="right">
+            <%= simple_format(h(@comment1)) %>
+          </article>
+        </article>
+
+        <article class="box reverse">
+            <article class="left">
+              <%= high_chart("radar2", @graph2) %>
+            </article>
+            <article class="right">
+              <%= simple_format(h(@comment2)) %>
+            </article>
+        </article>
+
+        <article class="box">
+            <article class="left">
+              <%= high_chart("radar3", @graph3) %>
+            </article>
+            <article class="right">
+              <%= simple_format(h(@comment3)) %>
+            </article>
+        </article>
+
+        <article class="box reverse">
+            <article class="left">
+              <%= high_chart("radar4", @graph4) %>
+            </article>
+            <article class="right">
+              <%= simple_format(h(@comment4)) %>
+            </article>
+        </article>
+
+        <article class="box">
+            <article class="left">
+              <%= high_chart("radar5", @graph5) %>
+            </article>
+            <article class="right">
+              <%= simple_format(h(@comment5)) %>
+            </article>
+        </article>
+
+        <article class="box reverse">
+            <article class="left">
+              <%= high_chart("radar6", @graph6) %>
+            </article>
+            <article class="right">
+              <%= simple_format(h(@comment6)) %>
+            </article>
+        </article>
+
+      </div>
+      <div id="tabs-2" class="reference_tabs-2">
+        <article class="bar">
+          <%= high_chart("bar", @graph_data) %>
+        </article>
+      </div>
+      <div id="tabs-3" class="reference_tabs-3">
+        <article class="bar">
+          <%= high_chart("bar_history", @graph_data1) %>
+        </article>
+      </div>
+      <div id="tabs-4" class="reference_tabs-4">
+        <h2>職務経歴</h2>
+        <table>
+          <tr>
+            <td class="table_label">期間</td>
+            <td class="text"><%= @project.project_period %></td>
+          </tr>
+          <tr>
+            <td class="table_label">プロジェクト名</td>
+            <td class="text"><%= @project.project_name %></td>
+          </tr>
+          <tr>
+            <td class="table_label">プロジェクト概要</td>
+            <td class="text"><%= @project.project_overview %></td>
+          </tr>
+          <tr>
+            <td class="table_label">担当フェーズ</td>
+            <td class="text"><%= @project.phase %></td>
+          </tr>
+          <tr>
+            <td class="table_label">業務内容</td>
+            <td class="text"><%= @project.business %></td>
+          </tr>
+          <tr>
+            <td class="table_label">技術要素（OS・言語・DB等)</td>
+            <td class="text"><%= @project.technical_element %></td>
+          </tr>
+        </table>
+        <h2>自己PR</h2>
+        <table>
+          <% if @qualification.length == 1 %>
+            <tr>
+              <td class="table_label">資格①</td>
+              <td class="text"><%= @qualification.qualification %></td>
+            </tr>
+          <% else %>
+            <% @qualification.each_with_index do |qualification, i| %>
+              <tr>
+                <td class="table_label">資格<%= i+1 %></td>
+                <td class="text"><%= qualification.qualification %></td>
+              </tr>
+            <% end %>
+          <% end %>
+        </table>
+        <h2>その他</h2>
+        <table>
+          <tr>
+            <td class="table_label">自己PR</td>
+            <td class="text"><%= @selfintroduction.self_introduction %></td>
+          </tr>
+        </table>
+      </div>
+    </div><!--End tabs container-->
+  </div><!--End tabs-->
+  <%= link_to image_tag('button_back.png', { :border => '0', :alt => '戻る'}), '/welcomes/index',class: "btn_back" %>
+</div>
+
+<%= javascript_include_tag "tabulous.js" %>
+<%= javascript_include_tag "skill_reference.js" %>
+<%= javascript_include_tag "highcharts.js" %>
+<%= javascript_include_tag "highcharts-more.js" %>

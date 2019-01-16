@@ -1,0 +1,53 @@
+<div class="main_image"></div>
+<h1 id="page_title">Welcome</h1>
+
+<div class="content welcome">
+  <section class="purpose">
+  <h2>本サービスの目的</h2>
+    <p>ご登録頂きありがとうございます。本サービスは、ご自身のITスキルを視覚的に把握し、管理していくことを目的としています。また、他の方の</br>
+    登録情報を参照することもできるため、情報共有や人脈作りも可能です。</br>
+    どうぞ、楽しんでください。</p>
+  </section>
+
+  <section class="service">
+    <h2>サービス情報</h2>
+    <p>本サービスでは、以下の３つ機能があります。まず始めにご自身のスキルを登録しましょう。スキル登録後にスキルの参照画面で視覚的に管理することが可能</br>
+      になります。ユーザー検索にて、気になる技術を保持しているユーザーを検索してみましょう。</br>
+      ・スキル登録・更新</br>
+      ・スキル参照</br>
+      ・ユーザー検索</p>
+    <div class="icon_button">
+      <div>
+        <%= image_tag 'icon_registration_update.png', :class => "icon"%><br>
+        <%= link_to image_tag('button_registration_update.png', { :border => '0', :alt => 'スキル登録・更新'}), '/skill_registration_update/index' %>
+      </div>
+      <div>
+        <%= image_tag 'icon_skill_reference.png', :class => "icon" %><br>
+        <%= link_to image_tag('button_skill_reference.png', { :border => '0', :alt => 'スキル参照'}), skill_reference_index_path(:user_id => session[:user_id]) %>
+      </div>
+      <div>
+        <%= image_tag 'icon_user_search.png', :class => "icon" %><br>
+        <%= link_to image_tag('button_user_search.png', { :border => '0', :alt => 'ユーザー検索'}), '/usersearches/index' %>
+      </div>
+    </div>
+
+    <section class="description">
+      <h2>スキル参照画面の閲覧方法</h2>
+      <p>スキル参照画面では、以下の４つを確認することができます。</br>
+        ・分野ごとの分析結果</br>
+        ・全分野の分析結果</br>
+        ・時期ごとの分析結果</br>
+        ・経歴</p>
+      <p>以下のルールに則ってスキルレベルの算出を行うこととする。</br>
+        ●分野ごとの分析結果</br>
+        　未経験：0点</br>
+        　初級：1点</br>
+        　中級：2点</br>
+        　上級：3点</p>
+        ●全分野の分析結果</br>
+        　分野ごとのスキルの平均値</p>
+    </section>
+
+</div>
+
+<%= javascript_include_tag "welcomes.js" %>

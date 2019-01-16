@@ -1,0 +1,36 @@
+/** ヘッダー部 **/
+
+// メイン画像部
+.main_image {
+  width: 100vw;
+  height: 360px;
+  background-image: image-url('welcome_mainimage.png');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-bottom: 40px;
+}
+
+.purpose .service {
+  width: 960px;
+}
+
+.purpose {
+  margin-bottom: 40px;
+}
+
+.description {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.icon_button {
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+}
+
+.icon {
+  margin-bottom: 24px;
+  width:80px;
+}

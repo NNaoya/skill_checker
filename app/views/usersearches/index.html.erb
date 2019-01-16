@@ -1,0 +1,72 @@
+<div class="user_search_main_image"></div>
+<h1 id="page_title">User Search</h1>
+
+<div class="content">
+  <h2>ユーザー検索について</h2>
+    <p>ユーザー検索画面では、本サービスに登録している別ユーザを検索することができます。</br>
+    カテゴリーとスキルを検索条件に指定し、検索ボタンを押下してください。</br>
+    検索ができましたら、「詳細ページ」リンクを押下しますと、以下の内容を閲覧することが可能です。</br>
+    ・分野ごとの分析結果</br>
+    ・全分野の分析結果</br>
+    ・時期ごとの分析結果</br>
+    ・経歴</br>
+    </br>
+    また、メールアドレス宛てに連絡することでコミュニケーションを取ることもできますので、ぜひご活用ください。</p>
+
+  <h2>ユーザー検索条件</h2>
+  <%= form_for @category ,url: '/usersearches/index' do |f| %>
+    <div class="search_criteria">
+      <%= f.label :"カテゴリー:" %>
+      <%= f.collection_select :id, Category.all, :id, :name %>
+    </div>
+
+    <div class="search_criteria">
+      <%= fields_for @skill do |q| %>
+        <%= q.label :"スキル:" %>
+        <%= q.collection_select :id, Skill.where(category_id: 1), :id, :skill %>
+      <% end %>
+    </div>
+
+    <div class="search_criteria">
+      <label for="category_レベル">レベル：</label>
+      <select name="level" id="level">
+        <option value="1">初級</option>
+        <option value="2">中級</option>
+        <option value="3">上級</option>
+      </select>
+    </div>
+
+    <%= hidden_field_tag 'search_flag', "1" %>
+    <%= f.submit "検索", class: 'btn_skill_registration' %>
+  <% end %>
+
+  <h2>ユーザー検索結果</h2>
+  <div class="search">
+    <table class="search_result" rules="all">
+      <tr>
+        <th>ユーザー名</th>
+        <th>メールアドレス</th>
+        <th>分析画面</th>
+      </tr>
+      <% if @user.nil? %>
+      <% else %>
+        <% if @user.blank? %>
+          <tr>
+            <td colspan="3">検索結果がありません。</td>
+          </tr>
+        <% else %>
+          <% @user.each_with_index do |user, i| %>
+              <tr>
+                <td><%= user.name %></td>
+                <td><%= user.email %></td>
+                <td><%= link_to '詳細ページへ', controller: 'skill_reference', action: 'index',user_id: user.id %></td>
+              </tr>
+          <% end %>
+        <% end %>
+      <% end %>
+    </table>
+  </div>
+  <%= link_to image_tag('button_back.png', { :border => '0', :alt => '戻る'}), '/welcomes/index',class: "btn_back" %>
+</div>
+
+<%= javascript_include_tag "usersearches.js" %>

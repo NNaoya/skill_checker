@@ -1,0 +1,60 @@
+<div class="skill_registration_update_main_image"></div>
+<h1 id="page_title">Administration</h1>
+
+<div class="content">
+  <div id="tabs">
+    <ul id="tab">
+      <li id="tab_button" class="tab_button admin_registration_update_tab"><a href="#tabs-1" title="">カテゴリー登録</a></li>
+      <li id="tab_button1" class="tab_button admin_registration_update_tab"><a href="#tabs-2" title="">パスワード変更</a></li>
+    </ul>
+    <div id="tabs_container">
+      <div id="tabs-1" class="registration_update_tabs-1">
+        <% (0..@categoryNum-1).each do |n| %>
+          <% if n.even? %>
+            <article>
+          <% end %>
+          <section class="category">
+            <% @category[n].each_with_index do |category, i| %>
+              <% if i + 1 == 1 %>
+                <%= image_tag category.title_image.url %>
+                <h2 class="category_title"><%= category.name %></h2>
+                <ul>
+              <% end %>
+                <li><%= category.skill %></li>
+              <% if i == @category[n].length - 1 %>
+                </ul>
+                <%= image_tag category.icon_image.url,:class => "category_icon" %>
+                <button class="btn_transition" onclick="screentransition_toupdate(<%= category.id %>);">詳細ページへ</button>
+              <% end %>
+            <% end %>
+          </section>
+          <% if n.odd? || n == @categoryNum-1 %>
+            </article>
+          <% end %>
+        <% end %>
+      <button class="btn_add add_qualification" onclick="screentransition_tonew();">新規登録</button>
+      </div>
+      <div id="tabs-2">
+        <%= form_for @user, url: '/admins/update' do |f| %>
+          <table>
+            <tr>
+              <td class="table_label"><%= f.label :'パスワード' %></td>
+              <td class="text"><%= f.text_field :password, class: 'form-control' %></td>
+            </tr>
+            <tr>
+              <td class="table_label"><%= f.label :'パスワード（確認）' %></td>
+              <td class="text"><%= f.text_field :password_confirmation, class: 'form-control' %></td>
+            </tr>
+          </table>
+          <%= hidden_field :id, @user.id %>
+          <article class="submit">
+            <%= f.submit "登録", class: 'btn_skill_registration' %>
+          </article>
+        <% end %>
+      </div>
+    </div><!--End tabs container-->
+  </div><!--End tabs-->
+</div>
+
+<%= javascript_include_tag "tabulous.js" %>
+<%= javascript_include_tag "admins.js" %>

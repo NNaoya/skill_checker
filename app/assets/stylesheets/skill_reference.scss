@@ -1,0 +1,81 @@
+/** ヘッダー部 **/
+
+// メイン画像部
+.skill_reference_main_image {
+  width: 100vw;
+  height: 360px;
+  background-image: image-url('skill_reference_mainimage.png');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-bottom: 40px;
+}
+
+/** コンテンツ部 **/
+
+// 分野ごとの分析結果部
+.box {
+  display: flex;
+  margin-bottom: 40px;
+}
+
+.reverse {
+  flex-flow: row-reverse;
+}
+
+.left{
+  width: 600px;
+}
+
+.right {
+  width: 360px;
+}
+
+.highcharts-legend-item {
+  display: none;
+}
+
+.highcharts-title {
+  margin-bottom: 24px;
+  display: none;
+}
+
+.reference_tab {
+  width: 190px;
+}
+
+.reference_tabs-1 {
+  height: 3000px;
+}
+
+.reference_tabs-2 {
+  height: 800px;
+}
+
+.reference_tabs-3 {
+  height: 800px;
+}
+
+.reference_tabs-4 {
+  height: 900px;
+}
+
+#radar1,#radar2,#radar3,#radar4,#radar5,#radar6 {
+  height: 400px;
+}
+
+// 全分野の分析結果、時期ごとの分析結果部
+.bar{
+  width: 960px;
+  margin: 0 auto;
+}
+
+//　経歴部
+#tabs-4 {
+  width: 960px;
+}
+
+#tabs-4 table {
+  width: 900px;
+  margin: 0 auto;
+}
